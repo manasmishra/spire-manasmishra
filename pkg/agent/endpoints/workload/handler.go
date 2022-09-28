@@ -62,6 +62,10 @@ func New(c Config) *Handler {
 // FetchJWTSVID processes request for a JWT-SVID
 func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest) (resp *workload.JWTSVIDResponse, err error) {
 	log := rpccontext.Logger(ctx)
+	// fmt.Println("Received SpiffeID as:", req.SpiffeId)
+	log.Debug("Inside pkg/agent/endpoints/workload/handler.go-->FetchJWTSVID Method", req.Audience, req.SpiffeId)
+	// log.Debug("Received Audience from application is:", req.Audience)
+	// log.Debug("Received spiffeID from application is:", req.SpiffeId)
 	if len(req.Audience) == 0 {
 		log.Error("Missing required audience parameter")
 		return nil, status.Error(codes.InvalidArgument, "audience must be specified")
@@ -79,12 +83,16 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 		log.WithError(err).Error("Workload attestation failed")
 		return nil, err
 	}
+	log.Debug("selectors got are: ", selectors)
+	// fmt.Println("Selectors are:", selectors)
 
 	var spiffeIDs []spiffeid.ID
 
 	log = log.WithField(telemetry.Registered, true)
 
 	identities := h.c.Manager.MatchingIdentities(selectors)
+	log.Debug("Recieved identities based on selectors are:", identities, " passed spiffeeId is:", req.SpiffeId)
+	// fmt.Println("identities are:", identities)
 	for _, identity := range identities {
 		if req.SpiffeId != "" && identity.Entry.SpiffeId != req.SpiffeId {
 			continue
@@ -100,7 +108,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 	}
 
 	if len(spiffeIDs) == 0 {
-		log.WithField(telemetry.Registered, false).Error("No identity issued")
+		log.WithField(telemetry.Registered, false).Error("No identity issued", req.SpiffeId)
 		return nil, status.Error(codes.PermissionDenied, "no identity issued")
 	}
 

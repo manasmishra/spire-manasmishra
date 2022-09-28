@@ -42,6 +42,7 @@ func (wla *attestor) Attest(ctx context.Context, pid int) []*common.Selector {
 	defer counter.Done(nil)
 
 	log := wla.c.Log.WithField(telemetry.PID, pid)
+	log.Debug("Inside pkg/agent/attestor/workload/workload.go-->(wla *attestor) Attest. PID is:", pid)
 
 	plugins := wla.c.Catalog.GetWorkloadAttestors()
 	sChan := make(chan []*common.Selector)
@@ -76,6 +77,7 @@ func (wla *attestor) Attest(ctx context.Context, pid int) []*common.Selector {
 	if pid != os.Getpid() {
 		log.WithField(telemetry.Selectors, selectors).Debug("PID attested to have selectors")
 	}
+	log.WithField(telemetry.Selectors, selectors).Debug("Returning from pkg/agent/attestor/workload/workload.go-->Attest with selectors")
 	return selectors
 }
 

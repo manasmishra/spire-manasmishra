@@ -183,6 +183,7 @@ func (c *Cache) CountSVIDs() int {
 
 func (c *Cache) MatchingIdentities(selectors []*common.Selector) []Identity {
 	set, setDone := allocSelectorSet(selectors...)
+	c.log.Debug("selector received as:", set)
 	defer setDone()
 
 	c.mu.RLock()
@@ -604,10 +605,13 @@ func (c *Cache) getSubscribers(set selectorSet) (subscriberSet, func()) {
 }
 
 func (c *Cache) matchingIdentities(set selectorSet) []Identity {
+	c.log.Debug("Inside pkg/agent/manager/cache/cache.go-->matchingIdentities with selectors:", set)
 	records, recordsDone := c.getRecordsForSelectors(set)
 	defer recordsDone()
 
 	if len(records) == 0 {
+		// fmt.Println("returning from here")
+		c.log.Debug("records received from getRecordsForSelectors is not having any records returning nil")
 		return nil
 	}
 
@@ -619,6 +623,8 @@ func (c *Cache) matchingIdentities(set selectorSet) []Identity {
 		out = append(out, makeIdentity(record))
 	}
 	sortIdentities(out)
+	c.log.Debug("Returning from pkg/agent/manager/cache/cache.go-->(c *Cache) matchingIdentities with Matching Identities are:", out)
+	// fmt.Println("Sending identities as per selector are:", out)
 	return out
 }
 
@@ -671,6 +677,7 @@ func (c *Cache) getRecordsForSelectors(set selectorSet) (recordSet, func()) {
 			}
 		}
 	}
+	c.log.Debug("Records foound as per selectors are:", records)
 
 	// Filter out records whose registration entry selectors are not within
 	// inside the selector set.

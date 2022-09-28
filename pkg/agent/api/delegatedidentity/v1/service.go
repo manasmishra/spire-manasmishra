@@ -252,6 +252,7 @@ func (s *Service) SubscribeToX509Bundles(req *delegatedidentityv1.SubscribeToX50
 
 func (s *Service) FetchJWTSVIDs(ctx context.Context, req *delegatedidentityv1.FetchJWTSVIDsRequest) (resp *delegatedidentityv1.FetchJWTSVIDsResponse, err error) {
 	log := rpccontext.Logger(ctx)
+	log.Debug("Inside pkg/agent/api/delegatedidentity/v1/service.go-->FetchJWTSVIDs. req.Audience:", req.Audience)
 	if len(req.Audience) == 0 {
 		log.Error("Missing required audience parameter")
 		return nil, status.Error(codes.InvalidArgument, "audience must be specified")
