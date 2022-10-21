@@ -10,6 +10,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"github.com/spiffe/go-spiffe/v2/proto/spiffe/workload"
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
@@ -62,8 +63,12 @@ func New(c Config) *Handler {
 // FetchJWTSVID processes request for a JWT-SVID
 func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest) (resp *workload.JWTSVIDResponse, err error) {
 	log := rpccontext.Logger(ctx)
+	startTime := time.Now()
+	reqID := uuid.New()
+	reqidStr := reqID.String()
+	ctx = context.WithValue(ctx, "reqId", reqidStr)
 	// fmt.Println("Received SpiffeID as:", req.SpiffeId)
-	log.Debug("Inside pkg/agent/endpoints/workload/handler.go-->FetchJWTSVID Method", req.Audience, req.SpiffeId)
+	log.Debug("Inside pkg/agent/endpoints/workload/handler.go-->FetchJWTSVID Method ", req.Audience, req.SpiffeId, " Time of entry is:", startTime, " RequestId is:", reqidStr)
 	// log.Debug("Received Audience from application is:", req.Audience)
 	// log.Debug("Received spiffeID from application is:", req.SpiffeId)
 	if len(req.Audience) == 0 {
@@ -83,7 +88,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 		log.WithError(err).Error("Workload attestation failed")
 		return nil, err
 	}
-	log.Debug("selectors got are: ", selectors)
+	log.Debug(" RequestId is:", reqidStr, " selectors got are: ", selectors)
 	// fmt.Println("Selectors are:", selectors)
 
 	var spiffeIDs []spiffeid.ID
@@ -91,7 +96,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 	log = log.WithField(telemetry.Registered, true)
 
 	identities := h.c.Manager.MatchingIdentities(selectors)
-	log.Debug("Recieved identities based on selectors are:", identities, " passed spiffeeId is:", req.SpiffeId)
+	log.Debug(" RequestId is:", reqidStr, " Recieved identities based on selectors are:", identities, " passed spiffeeId is:", req.SpiffeId)
 	// fmt.Println("identities are:", identities)
 	for _, identity := range identities {
 		if req.SpiffeId != "" && identity.Entry.SpiffeId != req.SpiffeId {
@@ -108,7 +113,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 	}
 
 	if len(spiffeIDs) == 0 {
-		log.WithField(telemetry.Registered, false).Error("No identity issued", req.SpiffeId)
+		log.WithField(telemetry.Registered, false).Error(" RequestId is:", reqidStr, " No identity issued", req.SpiffeId)
 		return nil, status.Error(codes.PermissionDenied, "no identity issued")
 	}
 
@@ -117,6 +122,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 		loopLog := log.WithField(telemetry.SPIFFEID, id.String())
 
 		var svid *client.JWTSVID
+		log.Debug("RequestId is:", reqidStr, " Before callng h.c.Manager.FetchJWTSVID")
 		svid, err = h.c.Manager.FetchJWTSVID(ctx, id, req.Audience)
 		if err != nil {
 			loopLog.WithError(err).Error("Could not fetch JWT-SVID")
@@ -128,7 +134,7 @@ func (h *Handler) FetchJWTSVID(ctx context.Context, req *workload.JWTSVIDRequest
 		})
 
 		ttl := time.Until(svid.ExpiresAt)
-		loopLog.WithField(telemetry.TTL, ttl.Seconds()).Debug("Fetched JWT SVID")
+		loopLog.WithField(telemetry.TTL, ttl.Seconds()).Debug("Fetched JWT SVID End Time is:", time.Now(), " Total time taken is:", time.Since(startTime), " RequestId is:", reqidStr)
 	}
 
 	return resp, nil

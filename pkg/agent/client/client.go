@@ -238,7 +238,9 @@ func (c *client) NewJWTSVID(ctx context.Context, entryID string, audience []stri
 		return nil, err
 	}
 	defer connection.Release()
-
+	startTime := time.Now()
+	reqIdStr := ctx.Value("reqId")
+	c.c.Log.Debug("pkg/agent/client/client.go-->NewJWTSVID. Before calling Spire server :", entryID, " Time now is:", startTime, " RequestId is:", reqIdStr)
 	resp, err := svidClient.NewJWTSVID(ctx, &svidv1.NewJWTSVIDRequest{
 		Audience: audience,
 		EntryId:  entryID,
@@ -252,6 +254,7 @@ func (c *client) NewJWTSVID(ctx context.Context, entryID string, audience []stri
 	svid := resp.Svid
 	switch {
 	case svid == nil:
+		c.c.Log.Error("SVID not found for SpiffeId:", entryID, " Responded with time:", time.Since(startTime), " Request Id is:", reqIdStr)
 		return nil, errors.New("JWTSVID response missing SVID")
 	case svid.IssuedAt == 0:
 		return nil, errors.New("JWTSVID missing issued at")
@@ -261,6 +264,7 @@ func (c *client) NewJWTSVID(ctx context.Context, entryID string, audience []stri
 		return nil, errors.New("JWTSVID issued after it has expired")
 	}
 
+	c.c.Log.Debug("Response sending from pkg/agent/client/client.go-->NewJWTSVID. After calling Spire server :", entryID, " Responded with time:", time.Since(startTime), " RequestId is:", reqIdStr)
 	return &JWTSVID{
 		Token:     svid.Token,
 		IssuedAt:  time.Unix(svid.IssuedAt, 0).UTC(),

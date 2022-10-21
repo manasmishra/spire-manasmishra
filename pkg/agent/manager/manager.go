@@ -184,8 +184,10 @@ func (m *manager) FetchWorkloadUpdate(selectors []*common.Selector) *cache.Workl
 func (m *manager) FetchJWTSVID(ctx context.Context, spiffeID spiffeid.ID, audience []string) (*client.JWTSVID, error) {
 	now := m.clk.Now()
 
+	m.c.Log.Debug("Inside pkg/agent/manager/manager.go-->FetchJWTSVID. RequestId is:", ctx.Value("reqId"))
 	cachedSVID, ok := m.cache.GetJWTSVID(spiffeID, audience)
 	if ok && !rotationutil.JWTSVIDExpiresSoon(cachedSVID, now) {
+		m.c.Log.Debug("Sending Response from cache. RequestId is:", ctx.Value("reqId"), " Time taken is:", time.Since(now))
 		return cachedSVID, nil
 	}
 
