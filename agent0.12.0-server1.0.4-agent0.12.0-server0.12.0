@@ -1,0 +1,264 @@
+[root@pas-devauthnz0 ~]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz0 ~]# spire-server --version
+1.0.4-dev-unk
+[root@pas-devauthnz1 ~]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz1 ~]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz0 ~]# curl -v http://localhost:8444/live
+* About to connect() to localhost port 8444 (#0)
+*   Trying ::1...
+* Connection refused
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8444 (#0)
+> GET /live HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8444
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Date: Thu, 27 Oct 2022 19:16:20 GMT
+< Content-Length: 0
+<
+* Connection #0 to host localhost left intact
+[root@pas-devauthnz0 ~]# curl -v http://localhost:8444/ready
+* About to connect() to localhost port 8444 (#0)
+*   Trying ::1...
+* Connection refused
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8444 (#0)
+> GET /ready HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8444
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Length: 189
+< Content-Type: application/json
+< Date: Thu, 27 Oct 2022 19:16:28 GMT
+<
+* Connection #0 to host localhost left intact
+{"details":{"agent":{"name":"agent","status":"ok","fatal":true,"check_time":"2022-10-28T00:45:56.838086431+05:30","num_failures":0,"first_failure_at":"0001-01-01T00:00:00Z"}},"status":"ok"}[root@pas-devauthnz0 ~]#
+
+[root@pas-devauthnz1 ~]# curl -v http://localhost:8444/live
+* About to connect() to localhost port 8444 (#0)
+*   Trying ::1...
+* Connection refused
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8444 (#0)
+> GET /live HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8444
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Date: Thu, 27 Oct 2022 19:17:19 GMT
+< Content-Length: 0
+<
+* Connection #0 to host localhost left intact
+[root@pas-devauthnz1 ~]# curl -v http://localhost:8444/ready
+* About to connect() to localhost port 8444 (#0)
+*   Trying ::1...
+* Connection refused
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8444 (#0)
+> GET /ready HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8444
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Length: 189
+< Content-Type: application/json
+< Date: Thu, 27 Oct 2022 19:17:27 GMT
+<
+* Connection #0 to host localhost left intact
+{"details":{"agent":{"name":"agent","status":"ok","fatal":true,"check_time":"2022-10-28T00:47:17.666520875+05:30","num_failures":0,"first_failure_at":"0001-01-01T00:00:00Z"}},"status":"ok"}[root@pas-devauthnz1 ~]#
+
+as-devauthnz0 ~]# curl -v http://localhost:8443/live
+* About to connect() to localhost port 8443 (#0)
+*   Trying ::1...
+* Connected to localhost (::1) port 8443 (#0)
+> GET /live HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8443
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: application/json
+< Date: Thu, 27 Oct 2022 19:17:57 GMT
+< Content-Length: 75
+<
+{"catalog.datastore":{},"server":{},"server.ca":{},"server.ca.manager":{}}
+* Connection #0 to host localhost left intact
+[root@pas-devauthnz0 ~]# curl -v http://localhost:8443/ready
+* About to connect() to localhost port 8443 (#0)
+*   Trying ::1...
+* Connected to localhost (::1) port 8443 (#0)
+> GET /ready HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8443
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: application/json
+< Date: Thu, 27 Oct 2022 19:18:05 GMT
+< Content-Length: 75
+<
+{"catalog.datastore":{},"server":{},"server.ca":{},"server.ca.manager":{}}
+* Connection #0 to host localhost left intact
+
+as-devauthnz1 ~]# curl -v http://localhost:8443/live
+* About to connect() to localhost port 8443 (#0)
+*   Trying ::1...
+* Connected to localhost (::1) port 8443 (#0)
+> GET /live HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8443
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Date: Thu, 27 Oct 2022 19:18:44 GMT
+< Content-Length: 0
+<
+* Connection #0 to host localhost left intact
+[root@pas-devauthnz1 ~]# curl -v http://localhost:8443/ready
+* About to connect() to localhost port 8443 (#0)
+*   Trying ::1...
+* Connected to localhost (::1) port 8443 (#0)
+> GET /ready HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost:8443
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Length: 191
+< Content-Type: application/json
+< Date: Thu, 27 Oct 2022 19:18:51 GMT
+<
+* Connection #0 to host localhost left intact
+{"details":{"server":{"name":"server","status":"ok","fatal":true,"check_time":"2022-10-28T00:48:17.167225165+05:30","num_failures":0,"first_failure_at":"0001-01-01T00:00:00Z"}},"status":"ok"}[root@pas-devauthnz1 ~]#
+
+[root@pas-devauthnz0 ~]# supervisorctl restart spire-agent
+spire-agent: stopped
+spire-agent: started
+
+[root@pas-devauthnz1 ~]# supervisorctl restart spire-agent
+spire-agent: stopped
+spire-agent: started
+
+[root@pas-devauthnz0 ~]# cd /myntra/data/agent/
+[root@pas-devauthnz0 agent]# ls
+agent_svid.der  bundle.der  svid.key
+[root@pas-devauthnz0 agent]# ll
+total 12
+-rw------- 1 root root  577 Oct 28 00:50 agent_svid.der
+-rw------- 1 root root 2005 Oct 28 00:50 bundle.der
+-rw------- 1 root root  121 Oct 28 00:50 svid.key
+[root@pas-devauthnz0 agent]# rm -rf *
+[root@pas-devauthnz0 agent]# supervisorctl restart spire-agent
+spire-agent: stopped
+spire-agent: ERROR (spawn error)
+[root@pas-devauthnz0 agent]# tail -10f /myntra/log/spire/agent.log
+time="2022-10-28T00:51:39+05:30" level=warning msg="Current umask 0022 is too permissive; setting umask 0027"
+time="2022-10-28T00:51:39+05:30" level=info msg="Starting agent with data directory: \"/myntra/data/agent\""
+time="2022-10-28T00:51:39+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=azure_msi plugin_services="[]" plugin_type=NodeAttestor subsystem_name=catalog
+time="2022-10-28T00:51:39+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=unix plugin_services="[]" plugin_type=WorkloadAttestor subsystem_name=catalog
+time="2022-10-28T00:51:39+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=disk plugin_services="[]" plugin_type=KeyManager subsystem_name=catalog
+time="2022-10-28T00:51:39+05:30" level=info msg="Bundle is not found" subsystem_name=attestor
+time="2022-10-28T00:51:39+05:30" level=debug msg="No pre-existing agent SVID found. Will perform node attestation" path=/myntra/data/agent/agent_svid.der subsystem_name=attestor
+time="2022-10-28T00:51:39+05:30" level=info msg="SVID is not found. Starting node attestation" subsystem_name=attestor
+time="2022-10-28T00:51:39+05:30" level=warning msg="Insecure bootstrap enabled; skipping server certificate verification" subsystem_name=attestor
+time="2022-10-28T00:51:39+05:30" level=error msg="Agent crashed" error="failed to get SVID: error getting attestation response from SPIRE server: rpc error: code = PermissionDenied desc = nodeattestor(azure_msi): MSI token has already been used to attest an agent"
+
+
+[root@pas-devauthnz1 ~]# cd /myntra/data/agent/
+[root@pas-devauthnz1 agent]# ll
+total 12
+-rw------- 1 root root  574 Oct 28 00:50 agent_svid.der
+-rw------- 1 root root 2005 Oct 28 00:50 bundle.der
+-rw------- 1 root root  121 Oct 28 00:50 svid.key
+[root@pas-devauthnz1 agent]# rm -rf *
+[root@pas-devauthnz1 agent]# supervisorctl restart spire-agent
+spire-agent: stopped
+spire-agent: ERROR (spawn error)
+[root@pas-devauthnz1 agent]# tail -10f /myntra/log/spire/agent.log
+time="2022-10-28T00:52:23+05:30" level=warning msg="Current umask 0022 is too permissive; setting umask 0027"
+time="2022-10-28T00:52:23+05:30" level=info msg="Starting agent with data directory: \"/myntra/data/agent\""
+time="2022-10-28T00:52:23+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=disk plugin_services="[]" plugin_type=KeyManager subsystem_name=catalog
+time="2022-10-28T00:52:23+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=azure_msi plugin_services="[]" plugin_type=NodeAttestor subsystem_name=catalog
+time="2022-10-28T00:52:23+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=unix plugin_services="[]" plugin_type=WorkloadAttestor subsystem_name=catalog
+time="2022-10-28T00:52:23+05:30" level=info msg="Bundle is not found" subsystem_name=attestor
+time="2022-10-28T00:52:23+05:30" level=debug msg="No pre-existing agent SVID found. Will perform node attestation" path=/myntra/data/agent/agent_svid.der subsystem_name=attestor
+time="2022-10-28T00:52:23+05:30" level=info msg="SVID is not found. Starting node attestation" subsystem_name=attestor
+time="2022-10-28T00:52:23+05:30" level=warning msg="Insecure bootstrap enabled; skipping server certificate verification" subsystem_name=attestor
+time="2022-10-28T00:52:23+05:30" level=error msg="Agent crashed" error="failed to get SVID: error getting attestation response from SPIRE server: rpc error: code = PermissionDenied desc = nodeattestor(azure_msi): MSI token has already been used to attest an agent"
+
+[root@pas-devauthnz0 agent]# supervisorctl restart spire-agent
+spire-agent: ERROR (not running)
+spire-agent: started
+[root@pas-devauthnz0 agent]# tail -10f /myntra/log/spire/agent.log
+time="2022-10-28T00:54:26+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=unix plugin_services="[]" plugin_type=WorkloadAttestor subsystem_name=catalog
+time="2022-10-28T00:54:26+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=disk plugin_services="[]" plugin_type=KeyManager subsystem_name=catalog
+time="2022-10-28T00:54:26+05:30" level=info msg="Bundle is not found" subsystem_name=attestor
+time="2022-10-28T00:54:26+05:30" level=debug msg="No pre-existing agent SVID found. Will perform node attestation" path=/myntra/data/agent/agent_svid.der subsystem_name=attestor
+time="2022-10-28T00:54:27+05:30" level=info msg="SVID is not found. Starting node attestation" subsystem_name=attestor
+time="2022-10-28T00:54:27+05:30" level=warning msg="Insecure bootstrap enabled; skipping server certificate verification" subsystem_name=attestor
+time="2022-10-28T00:54:28+05:30" level=info msg="Node attestation was successful" spiffe_id="spiffe://myntra.com/spire/agent/azure_msi/bef3246c-1638-4c82-b2be-047aa022ad5f/98730d4f-80c0-487c-9195-b7cd691cb509" subsystem_name=attestor
+time="2022-10-28T00:54:28+05:30" level=debug msg="Starting checker" name=agent subsystem_name=health
+time="2022-10-28T00:54:28+05:30" level=info msg="Serving health checks" address="localhost:8444"
+time="2022-10-28T00:54:28+05:30" level=info msg="Starting Workload and SDS APIs" subsystem_name=endpoints
+
+[root@pas-devauthnz1 agent]# supervisorctl restart spire-agent
+spire-agent: ERROR (not running)
+spire-agent: started
+[root@pas-devauthnz1 agent]# tail -10f /myntra/log/spire/agent.log
+time="2022-10-28T00:55:26+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=azure_msi plugin_services="[]" plugin_type=NodeAttestor subsystem_name=catalog
+time="2022-10-28T00:55:26+05:30" level=info msg="Plugin loaded" built-in_plugin=true plugin_name=unix plugin_services="[]" plugin_type=WorkloadAttestor subsystem_name=catalog
+time="2022-10-28T00:55:26+05:30" level=info msg="Bundle is not found" subsystem_name=attestor
+time="2022-10-28T00:55:26+05:30" level=debug msg="No pre-existing agent SVID found. Will perform node attestation" path=/myntra/data/agent/agent_svid.der subsystem_name=attestor
+time="2022-10-28T00:55:26+05:30" level=info msg="SVID is not found. Starting node attestation" subsystem_name=attestor
+time="2022-10-28T00:55:26+05:30" level=warning msg="Insecure bootstrap enabled; skipping server certificate verification" subsystem_name=attestor
+time="2022-10-28T00:55:28+05:30" level=info msg="Node attestation was successful" spiffe_id="spiffe://myntra.com/spire/agent/azure_msi/bef3246c-1638-4c82-b2be-047aa022ad5f/a0ebe5cc-402e-4660-942a-4dac94cd993d" subsystem_name=attestor
+time="2022-10-28T00:55:28+05:30" level=debug msg="Starting checker" name=agent subsystem_name=health
+time="2022-10-28T00:55:28+05:30" level=info msg="Serving health checks" address="localhost:8444"
+time="2022-10-28T00:55:28+05:30" level=info msg="Starting Workload and SDS APIs" subsystem_name=endpoints
+
+[root@pas-devauthnz0 agent]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid
+token(spiffe://myntra.com/testsvid):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69zA
+bundle(spiffe://myntra.com):
+[root@pas-devauthnz0 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69zA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1666899084, "iat":1666898784, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz1 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69zA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1666899084, "iat":1666898784, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz1 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69zA
+SVID is not valid: token has expired
+[root@pas-devauthnz0 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69zA
+SVID is not valid: token has expired
+[root@pas-devauthnz0 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69z
+SVID is not valid: unable to parse JWT token
+[root@pas-devauthnz1 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTA4NCwiaWF0IjoxNjY2ODk4Nzg0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.kl7JWZyfNuTVF1v-lVe9G1MKrFWhyXesutumq2uIhb8soDm63HoL6EZ2-dheNr2RjtGNBCkZy05B5KDh3O69z
+SVID is not valid: unable to parse JWT token
+
+
+[root@pas-devauthnz1 agent]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid
+token(spiffe://myntra.com/testsvid):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTM2OSwiaWF0IjoxNjY2ODk5MDY5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.89mFzF3re2xeQAOTVrpvb_ncMNCHBQdsXwxAWDz3XdjU74t78G6dfKy5Cn6V6buhVSoWFS28t1sRk2MDECvXAA
+bundle(spiffe://myntra.com):
+[root@pas-devauthnz1 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTM2OSwiaWF0IjoxNjY2ODk5MDY5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.89mFzF3re2xeQAOTVrpvb_ncMNCHBQdsXwxAWDz3XdjU74t78G6dfKy5Cn6V6buhVSoWFS28t1sRk2MDECvXAA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1666899369, "iat":1666899069, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz0 agent]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Imo5UlVEU20wcXVkb2hST1liN1kyUE5mOHF1V0VQRHB5IiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2Njg5OTM2OSwiaWF0IjoxNjY2ODk5MDY5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.89mFzF3re2xeQAOTVrpvb_ncMNCHBQdsXwxAWDz3XdjU74t78G6dfKy5Cn6V6buhVSoWFS28t1sRk2MDECvXAA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1666899369, "iat":1666899069, "sub":"spiffe://myntra.com/testsvid"}
