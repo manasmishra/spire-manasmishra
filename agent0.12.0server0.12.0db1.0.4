@@ -1,0 +1,361 @@
+mysql> SELECT * FROM migrations;
++----+---------------------+---------------------+---------+--------------+
+| id | created_at          | updated_at          | version | code_version |
++----+---------------------+---------------------+---------+--------------+
+|  1 | 2021-08-17 15:01:13 | 2022-10-31 14:03:30 |      15 | 0.12.0        |
++----+---------------------+---------------------+---------+--------------+
+1 row in set (0.00 sec)
+
+[root@pas-devauthnz0 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid
+token(spiffe://myntra.com/testsvid):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxNCwiaWF0IjoxNjY3MjA1MTE0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.Ee35fxm8ZADOO_Gvw4a8C5kViAFUeBAmxKvvbg47NT0AxJ__aMxfSVYi5xqf5koX-Lro6k6H9JfLTQxQb2yByA
+bundle(spiffe://myntra.com):
+	
+[root@pas-devauthnz0 ~]# spire-agent api va^C
+[root@pas-devauthnz0 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxNCwiaWF0IjoxNjY3MjA1MTE0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.Ee35fxm8ZADOO_Gvw4a8C5kViAFUeBAmxKvvbg47NT0AxJ__aMxfSVYi5xqf5koX-Lro6k6H9JfLTQxQb2yByA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667205414, "iat":1667205114, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz0 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxOSwiaWF0IjoxNjY3MjA1MTE5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.7qfC7ZHSfSlDcEzOO1NwpER5egUCXLG6zeAEqcz4bgmUCAJgZPmwGi0uXykGVQmr-7QkG5uUChjdMP5lfhqZOQ
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667205419, "iat":1667205119, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz0 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQyNCwiaWF0IjoxNjY3MjA1MTI0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.4pesopDCYPlMftRCBjPOGl-ZqljMHbK3ZAaq1Y4GLAugd49Ui06nLWjWDAZDLRG7VSp11Ou4CyBofjTcg4AZaw
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667205424, "iat":1667205124, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz0 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQ0NCwiaWF0IjoxNjY3MjA1MTQ0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.DKptOGAWtFrxuHkar9vlowrRIlQ1fpSA9cI-7jKLS4RC4Z_4M7RbzgR_yAcwJWKlxztrepqrvMJFj21Mi7xfcA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667205444, "iat":1667205144, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz0 ~]#
+
+[root@pas-devauthnz1 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid1
+token(spiffe://myntra.com/testsvid1):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxOSwiaWF0IjoxNjY3MjA1MTE5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.7qfC7ZHSfSlDcEzOO1NwpER5egUCXLG6zeAEqcz4bgmUCAJgZPmwGi0uXykGVQmr-7QkG5uUChjdMP5lfhqZOQ
+bundle(spiffe://myntra.com):
+	
+[root@pas-devauthnz1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxNCwiaWF0IjoxNjY3MjA1MTE0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.Ee35fxm8ZADOO_Gvw4a8C5kViAFUeBAmxKvvbg47NT0AxJ__aMxfSVYi5xqf5koX-Lro6k6H9JfLTQxQb2yByA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667205414, "iat":1667205114, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxOSwiaWF0IjoxNjY3MjA1MTE5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.7qfC7ZHSfSlDcEzOO1NwpER5egUCXLG6zeAEqcz4bgmUCAJgZPmwGi0uXykGVQmr-7QkG5uUChjdMP5lfhqZOQ
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667205419, "iat":1667205119, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQyNCwiaWF0IjoxNjY3MjA1MTI0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.4pesopDCYPlMftRCBjPOGl-ZqljMHbK3ZAaq1Y4GLAugd49Ui06nLWjWDAZDLRG7VSp11Ou4CyBofjTcg4AZaw
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667205424, "iat":1667205124, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQ0NCwiaWF0IjoxNjY3MjA1MTQ0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.DKptOGAWtFrxuHkar9vlowrRIlQ1fpSA9cI-7jKLS4RC4Z_4M7RbzgR_yAcwJWKlxztrepqrvMJFj21Mi7xfcA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667205444, "iat":1667205144, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz1 ~]#
+
+
+[root@pas-devauthnz2 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid2
+token(spiffe://myntra.com/testsvid2):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQyNCwiaWF0IjoxNjY3MjA1MTI0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.4pesopDCYPlMftRCBjPOGl-ZqljMHbK3ZAaq1Y4GLAugd49Ui06nLWjWDAZDLRG7VSp11Ou4CyBofjTcg4AZaw
+bundle(spiffe://myntra.com):
+	
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxNCwiaWF0IjoxNjY3MjA1MTE0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.Ee35fxm8ZADOO_Gvw4a8C5kViAFUeBAmxKvvbg47NT0AxJ__aMxfSVYi5xqf5koX-Lro6k6H9JfLTQxQb2yByA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667205414, "iat":1667205114, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxOSwiaWF0IjoxNjY3MjA1MTE5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.7qfC7ZHSfSlDcEzOO1NwpER5egUCXLG6zeAEqcz4bgmUCAJgZPmwGi0uXykGVQmr-7QkG5uUChjdMP5lfhqZOQ
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667205419, "iat":1667205119, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQyNCwiaWF0IjoxNjY3MjA1MTI0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.4pesopDCYPlMftRCBjPOGl-ZqljMHbK3ZAaq1Y4GLAugd49Ui06nLWjWDAZDLRG7VSp11Ou4CyBofjTcg4AZaw
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667205424, "iat":1667205124, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQ0NCwiaWF0IjoxNjY3MjA1MTQ0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.DKptOGAWtFrxuHkar9vlowrRIlQ1fpSA9cI-7jKLS4RC4Z_4M7RbzgR_yAcwJWKlxztrepqrvMJFj21Mi7xfcA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667205444, "iat":1667205144, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz2 ~]#
+
+[root@pac-patronus1 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid3
+token(spiffe://myntra.com/testsvid3):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQ0NCwiaWF0IjoxNjY3MjA1MTQ0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.DKptOGAWtFrxuHkar9vlowrRIlQ1fpSA9cI-7jKLS4RC4Z_4M7RbzgR_yAcwJWKlxztrepqrvMJFj21Mi7xfcA
+bundle(spiffe://myntra.com):
+	
+[root@pac-patronus1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxNCwiaWF0IjoxNjY3MjA1MTE0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.Ee35fxm8ZADOO_Gvw4a8C5kViAFUeBAmxKvvbg47NT0AxJ__aMxfSVYi5xqf5koX-Lro6k6H9JfLTQxQb2yByA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667205414, "iat":1667205114, "sub":"spiffe://myntra.com/testsvid"}
+[root@pac-patronus1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQxOSwiaWF0IjoxNjY3MjA1MTE5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.7qfC7ZHSfSlDcEzOO1NwpER5egUCXLG6zeAEqcz4bgmUCAJgZPmwGi0uXykGVQmr-7QkG5uUChjdMP5lfhqZOQ
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667205419, "iat":1667205119, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pac-patronus1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQyNCwiaWF0IjoxNjY3MjA1MTI0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.4pesopDCYPlMftRCBjPOGl-ZqljMHbK3ZAaq1Y4GLAugd49Ui06nLWjWDAZDLRG7VSp11Ou4CyBofjTcg4AZaw
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667205424, "iat":1667205124, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pac-patronus1 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNTQ0NCwiaWF0IjoxNjY3MjA1MTQ0LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.DKptOGAWtFrxuHkar9vlowrRIlQ1fpSA9cI-7jKLS4RC4Z_4M7RbzgR_yAcwJWKlxztrepqrvMJFj21Mi7xfcA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667205444, "iat":1667205144, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pac-patronus1 ~]#
+
+
+mysql> SELECT * FROM migrations;
++----+---------------------+---------------------+---------+--------------+
+| id | created_at          | updated_at          | version | code_version |
++----+---------------------+---------------------+---------+--------------+
+|  1 | 2021-08-17 15:01:13 | 2022-10-31 14:03:30 |      17 | 1.0.4        |
++----+---------------------+---------------------+---------+--------------+
+1 row in set (0.00 sec)
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz0 spire-manasmishra]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz0 spire-manasmishra]#
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz1 spire-manasmishra]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz1 spire-manasmishra]#
+[root@pas-devauthnz2 ~]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz2 ~]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz2 ~]#
+[root@pac-patronus1 spire-manasmishra]# spire-agent --version
+1.3.0
+[root@pac-patronus1 spire-manasmishra]# spire-server --version
+0.12.0-dev-unk
+[root@pac-patronus1 spire-manasmishra]#
+
+Issue of token
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid
+token(spiffe://myntra.com/testsvid):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3NywiaWF0IjoxNjY3MjA2Nzc3LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.5CJLgOxz4jnquAZ5tyPFqUyCVsR6aMNy9tkPErBNnKRHhW5KtSvwXygtq22EUjZzAgDQLN_4JyM-_jJ2F4CTZA
+
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid1
+token(spiffe://myntra.com/testsvid1):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OCwiaWF0IjoxNjY3MjA2Nzc4LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.PIegdnhEBocgvpIuktCzqsUNGVnRkNUIeRtw1rScF-htKpc3uS4yZUnT0RsJMuyvO0J6OVc-ciJAg4SaHgpAEg
+bundle(spiffe://myntra.com):
+
+[root@pas-devauthnz2 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid2
+token(spiffe://myntra.com/testsvid2):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OSwiaWF0IjoxNjY3MjA2Nzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.Rw7PJYki3gtNWIoA5evQnjBpwGiuVALf9jLfqHzIpreb22zjxGZpvBCAUKQXf5DaMttGYS-HMsT3CpgvomKpXg
+bundle(spiffe://myntra.com):
+
+[root@pac-patronus1 spire-manasmishra]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid3
+token(spiffe://myntra.com/testsvid3):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA4MSwiaWF0IjoxNjY3MjA2NzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.IpygFkseXZSxT7OcKNG80xajtr_d9wvTkpua1bprjATbMHALTxga56FtIGnqnYBmPPnnzUA_DGlOXRCOblJlgA
+bundle(spiffe://myntra.com):
+
+[root@pac-patronus1 bin]# ./spire-server --version
+1.0.4-dev-c645313
+
+[root@pas-devauthnz0 spire-manasmishra]# supervisorctl stop spire-server
+spire-server: stopped
+[root@pas-devauthnz0 spire-manasmishra]# cp bin/spire-server-1.0.4 /usr/local/bin/spire-server
+cp: overwrite ‘/usr/local/bin/spire-server’? y
+[root@pas-devauthnz0 spire-manasmishra]# supervisorctl start spire-server
+spire-server: started
+[root@pas-devauthnz0 spire-manasmishra]# spire-server --version
+1.0.4-dev-unk
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3NywiaWF0IjoxNjY3MjA2Nzc3LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.5CJLgOxz4jnquAZ5tyPFqUyCVsR6aMNy9tkPErBNnKRHhW5KtSvwXygtq22EUjZzAgDQLN_4JyM-_jJ2F4CTZA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667207077, "iat":1667206777, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA4MSwiaWF0IjoxNjY3MjA2NzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.IpygFkseXZSxT7OcKNG80xajtr_d9wvTkpua1bprjATbMHALTxga56FtIGnqnYBmPPnnzUA_DGlOXRCOblJlgA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667207081, "iat":1667206781, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OCwiaWF0IjoxNjY3MjA2Nzc4LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.PIegdnhEBocgvpIuktCzqsUNGVnRkNUIeRtw1rScF-htKpc3uS4yZUnT0RsJMuyvO0J6OVc-ciJAg4SaHgpAEg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667207078, "iat":1667206778, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OSwiaWF0IjoxNjY3MjA2Nzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.Rw7PJYki3gtNWIoA5evQnjBpwGiuVALf9jLfqHzIpreb22zjxGZpvBCAUKQXf5DaMttGYS-HMsT3CpgvomKpXg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667207079, "iat":1667206779, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz0 spire-manasmishra]#
+
+[root@pac-patronus1 bin]# supervisorctl stop spire-server
+spire-server: stopped
+[root@pac-patronus1 bin]# cp spire-server /usr/local/bin/
+cp: overwrite ‘/usr/local/bin/spire-server’? y
+[root@pac-patronus1 bin]# supervisorctl start spire-server
+spire-server: started
+[root@pac-patronus1 bin]# spire-server --version
+1.0.4-dev-c645313
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3NywiaWF0IjoxNjY3MjA2Nzc3LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.5CJLgOxz4jnquAZ5tyPFqUyCVsR6aMNy9tkPErBNnKRHhW5KtSvwXygtq22EUjZzAgDQLN_4JyM-_jJ2F4CTZA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667207077, "iat":1667206777, "sub":"spiffe://myntra.com/testsvid"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA4MSwiaWF0IjoxNjY3MjA2NzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.IpygFkseXZSxT7OcKNG80xajtr_d9wvTkpua1bprjATbMHALTxga56FtIGnqnYBmPPnnzUA_DGlOXRCOblJlgA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667207081, "iat":1667206781, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OCwiaWF0IjoxNjY3MjA2Nzc4LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.PIegdnhEBocgvpIuktCzqsUNGVnRkNUIeRtw1rScF-htKpc3uS4yZUnT0RsJMuyvO0J6OVc-ciJAg4SaHgpAEg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667207078, "iat":1667206778, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OSwiaWF0IjoxNjY3MjA2Nzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.Rw7PJYki3gtNWIoA5evQnjBpwGiuVALf9jLfqHzIpreb22zjxGZpvBCAUKQXf5DaMttGYS-HMsT3CpgvomKpXg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667207079, "iat":1667206779, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pac-patronus1 bin]#
+
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3NywiaWF0IjoxNjY3MjA2Nzc3LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.5CJLgOxz4jnquAZ5tyPFqUyCVsR6aMNy9tkPErBNnKRHhW5KtSvwXygtq22EUjZzAgDQLN_4JyM-_jJ2F4CTZA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667207077, "iat":1667206777, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA4MSwiaWF0IjoxNjY3MjA2NzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.IpygFkseXZSxT7OcKNG80xajtr_d9wvTkpua1bprjATbMHALTxga56FtIGnqnYBmPPnnzUA_DGlOXRCOblJlgA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667207081, "iat":1667206781, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OCwiaWF0IjoxNjY3MjA2Nzc4LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.PIegdnhEBocgvpIuktCzqsUNGVnRkNUIeRtw1rScF-htKpc3uS4yZUnT0RsJMuyvO0J6OVc-ciJAg4SaHgpAEg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667207078, "iat":1667206778, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OSwiaWF0IjoxNjY3MjA2Nzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.Rw7PJYki3gtNWIoA5evQnjBpwGiuVALf9jLfqHzIpreb22zjxGZpvBCAUKQXf5DaMttGYS-HMsT3CpgvomKpXg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667207079, "iat":1667206779, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz1 spire-manasmishra]#
+[root@pas-devauthnz1 spire-manasmishra]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz1 spire-manasmishra]#
+
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3NywiaWF0IjoxNjY3MjA2Nzc3LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.5CJLgOxz4jnquAZ5tyPFqUyCVsR6aMNy9tkPErBNnKRHhW5KtSvwXygtq22EUjZzAgDQLN_4JyM-_jJ2F4CTZA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667207077, "iat":1667206777, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA4MSwiaWF0IjoxNjY3MjA2NzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.IpygFkseXZSxT7OcKNG80xajtr_d9wvTkpua1bprjATbMHALTxga56FtIGnqnYBmPPnnzUA_DGlOXRCOblJlgA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667207081, "iat":1667206781, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OCwiaWF0IjoxNjY3MjA2Nzc4LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.PIegdnhEBocgvpIuktCzqsUNGVnRkNUIeRtw1rScF-htKpc3uS4yZUnT0RsJMuyvO0J6OVc-ciJAg4SaHgpAEg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667207078, "iat":1667206778, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwNzA3OSwiaWF0IjoxNjY3MjA2Nzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.Rw7PJYki3gtNWIoA5evQnjBpwGiuVALf9jLfqHzIpreb22zjxGZpvBCAUKQXf5DaMttGYS-HMsT3CpgvomKpXg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667207079, "iat":1667206779, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz2 ~]#
+[root@pas-devauthnz2 ~]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz2 ~]#
+
+Again issue token at this point
+while spire-agent is in 0.12.0, DB in 1.0.4, and agent pointing to a server running in 0.12.0
+[root@pas-devauthnz2 ~]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz2 ~]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz2 ~]#
+while spire-agent in 0.12.0, DB in 1.0.4 and agent pointing to a server running in 1.0.4
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent --version
+0.12.0-dev-unk
+[root@pas-devauthnz0 spire-manasmishra]# spire-server --version
+1.0.4-dev-unk
+while spire-agent is in 1.3.0, DB in 1.0.4, and agent pointing to a server running in 0.12.0
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent --version
+1.3.0
+[root@pas-devauthnz1 spire-manasmishra]# spire-server --version
+0.12.0-dev-unk
+[root@pas-devauthnz1 spire-manasmishra]#
+while spire-agent is in 1.3.0, DB in 1.0.4 and agent pointing to a server running in 1.0.4
+[root@pac-patronus1 bin]# spire-agent --version
+1.3.0
+[root@pac-patronus1 bin]# spire-server --version
+1.0.4-dev-c645313
+[root@pac-patronus1 bin]#
+
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid
+token(spiffe://myntra.com/testsvid):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY3OSwiaWF0IjoxNjY3MjA4Mzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.yFV1RxxJJvk5r_zi4WFtVhITc52Evkmnh_TvGNy9GL8t4FVAmd2nABKFhPTPU9eeo01NdySeMnY_K7XCkXgJbg
+bundle(spiffe://myntra.com):
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid1
+token(spiffe://myntra.com/testsvid1):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MSwiaWF0IjoxNjY3MjA4MzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.s_AWcxO8kR_RsZmNKWERHoXoNgvxXzx4R0u_TpNBMCIb50vAOoM0ogjTjyZGt83zcFlnDY2fMVJJncPtogepmg
+bundle(spiffe://myntra.com):
+[root@pas-devauthnz2 ~]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid2
+token(spiffe://myntra.com/testsvid2):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MywiaWF0IjoxNjY3MjA4MzgzLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.hIlHHrxIRxndoP7hRTTLjiixt9ynVRnalYqvsyudycIOk5tj0SpRveq9dISkv3OSfVdioLoo5PW4rnhVuaHaVA
+bundle(spiffe://myntra.com):
+[root@pac-patronus1 bin]# spire-agent api fetch jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -spiffeID spiffe://myntra.com/testsvid3
+token(spiffe://myntra.com/testsvid3):
+	eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4NSwiaWF0IjoxNjY3MjA4Mzg1LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.D0dE2LmVQCub6MbuPAHUK9tvbMWa_tZtagFWsuUSkD6Z35OF0Ap0Zq3xYqeO4NiP23egiNhBHR96rWUJXLHH0A
+bundle(spiffe://myntra.com):
+
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY3OSwiaWF0IjoxNjY3MjA4Mzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.yFV1RxxJJvk5r_zi4WFtVhITc52Evkmnh_TvGNy9GL8t4FVAmd2nABKFhPTPU9eeo01NdySeMnY_K7XCkXgJbg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667208679, "iat":1667208379, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MSwiaWF0IjoxNjY3MjA4MzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.s_AWcxO8kR_RsZmNKWERHoXoNgvxXzx4R0u_TpNBMCIb50vAOoM0ogjTjyZGt83zcFlnDY2fMVJJncPtogepmg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667208681, "iat":1667208381, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MywiaWF0IjoxNjY3MjA4MzgzLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.hIlHHrxIRxndoP7hRTTLjiixt9ynVRnalYqvsyudycIOk5tj0SpRveq9dISkv3OSfVdioLoo5PW4rnhVuaHaVA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667208683, "iat":1667208383, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz0 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4NSwiaWF0IjoxNjY3MjA4Mzg1LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.D0dE2LmVQCub6MbuPAHUK9tvbMWa_tZtagFWsuUSkD6Z35OF0Ap0Zq3xYqeO4NiP23egiNhBHR96rWUJXLHH0A
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667208685, "iat":1667208385, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz0 spire-manasmishra]#
+
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY3OSwiaWF0IjoxNjY3MjA4Mzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.yFV1RxxJJvk5r_zi4WFtVhITc52Evkmnh_TvGNy9GL8t4FVAmd2nABKFhPTPU9eeo01NdySeMnY_K7XCkXgJbg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667208679, "iat":1667208379, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MSwiaWF0IjoxNjY3MjA4MzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.s_AWcxO8kR_RsZmNKWERHoXoNgvxXzx4R0u_TpNBMCIb50vAOoM0ogjTjyZGt83zcFlnDY2fMVJJncPtogepmg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667208681, "iat":1667208381, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MywiaWF0IjoxNjY3MjA4MzgzLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.hIlHHrxIRxndoP7hRTTLjiixt9ynVRnalYqvsyudycIOk5tj0SpRveq9dISkv3OSfVdioLoo5PW4rnhVuaHaVA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667208683, "iat":1667208383, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz1 spire-manasmishra]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4NSwiaWF0IjoxNjY3MjA4Mzg1LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.D0dE2LmVQCub6MbuPAHUK9tvbMWa_tZtagFWsuUSkD6Z35OF0Ap0Zq3xYqeO4NiP23egiNhBHR96rWUJXLHH0A
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667208685, "iat":1667208385, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz1 spire-manasmishra]#
+
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY3OSwiaWF0IjoxNjY3MjA4Mzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.yFV1RxxJJvk5r_zi4WFtVhITc52Evkmnh_TvGNy9GL8t4FVAmd2nABKFhPTPU9eeo01NdySeMnY_K7XCkXgJbg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667208679, "iat":1667208379, "sub":"spiffe://myntra.com/testsvid"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MSwiaWF0IjoxNjY3MjA4MzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.s_AWcxO8kR_RsZmNKWERHoXoNgvxXzx4R0u_TpNBMCIb50vAOoM0ogjTjyZGt83zcFlnDY2fMVJJncPtogepmg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667208681, "iat":1667208381, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MywiaWF0IjoxNjY3MjA4MzgzLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.hIlHHrxIRxndoP7hRTTLjiixt9ynVRnalYqvsyudycIOk5tj0SpRveq9dISkv3OSfVdioLoo5PW4rnhVuaHaVA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667208683, "iat":1667208383, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pas-devauthnz2 ~]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4NSwiaWF0IjoxNjY3MjA4Mzg1LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.D0dE2LmVQCub6MbuPAHUK9tvbMWa_tZtagFWsuUSkD6Z35OF0Ap0Zq3xYqeO4NiP23egiNhBHR96rWUJXLHH0A
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667208685, "iat":1667208385, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pas-devauthnz2 ~]#
+
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Inp1ckl1ekJKeUtHTjRkTmJFUmhDcVhzZEZWSDczY0hZIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY3OSwiaWF0IjoxNjY3MjA4Mzc5LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkIn0.yFV1RxxJJvk5r_zi4WFtVhITc52Evkmnh_TvGNy9GL8t4FVAmd2nABKFhPTPU9eeo01NdySeMnY_K7XCkXgJbg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid
+Claims    : {"aud":["myntra_internal"], "exp":1667208679, "iat":1667208379, "sub":"spiffe://myntra.com/testsvid"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6ImNWdzh2QkMwaVduQmNNQnNMU0Y0N2tGaGtVRk03dEFBIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MSwiaWF0IjoxNjY3MjA4MzgxLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMSJ9.s_AWcxO8kR_RsZmNKWERHoXoNgvxXzx4R0u_TpNBMCIb50vAOoM0ogjTjyZGt83zcFlnDY2fMVJJncPtogepmg
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid1
+Claims    : {"aud":["myntra_internal"], "exp":1667208681, "iat":1667208381, "sub":"spiffe://myntra.com/testsvid1"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6InFKM0tUOEFYZmxrUW9ZQ0ZVbmNuYkNrSzdZVVMxNmtyIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4MywiaWF0IjoxNjY3MjA4MzgzLCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMiJ9.hIlHHrxIRxndoP7hRTTLjiixt9ynVRnalYqvsyudycIOk5tj0SpRveq9dISkv3OSfVdioLoo5PW4rnhVuaHaVA
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid2
+Claims    : {"aud":["myntra_internal"], "exp":1667208683, "iat":1667208383, "sub":"spiffe://myntra.com/testsvid2"}
+[root@pac-patronus1 bin]# spire-agent api validate jwt -audience myntra_internal -socketPath /run/spire/sockets/agent.sock -svid eyJhbGciOiJFUzI1NiIsImtpZCI6Ik01MVlVMWdYRnBVT2g1bTJHVm50cDRBWGxiZ2JYWjhzIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXludHJhX2ludGVybmFsIl0sImV4cCI6MTY2NzIwODY4NSwiaWF0IjoxNjY3MjA4Mzg1LCJzdWIiOiJzcGlmZmU6Ly9teW50cmEuY29tL3Rlc3RzdmlkMyJ9.D0dE2LmVQCub6MbuPAHUK9tvbMWa_tZtagFWsuUSkD6Z35OF0Ap0Zq3xYqeO4NiP23egiNhBHR96rWUJXLHH0A
+SVID is valid.
+SPIFFE ID : spiffe://myntra.com/testsvid3
+Claims    : {"aud":["myntra_internal"], "exp":1667208685, "iat":1667208385, "sub":"spiffe://myntra.com/testsvid3"}
+[root@pac-patronus1 bin]#
